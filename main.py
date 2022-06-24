@@ -1,6 +1,7 @@
 import wrap,time,random
 chet=0
 balance=6
+chengebalance=balance*4
 xspawn=60
 yspawn=90
 wrap.world.create_world(847,480)
@@ -14,6 +15,7 @@ goldtiger=wrap.sprite.add("g.tigerr",xspawn,yspawn,"tigerr")
 wrap.sprite.hide(goldtiger)
 wrap.sprite.hide(goldcorg)
 wrap.sprite.hide(goldcow)
+buy=1000
 pet=dog
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
@@ -45,29 +47,26 @@ def down():
 
 @wrap.always()
 def always(pos_x,pos_y):
-    global chet,balance,pet
+    global chet,balance,pet,buy
     xp=wrap.sprite.get_x(rbp)
     yp=wrap.sprite.get_y(rbp)
     wrap.sprite.move_to(pet,xp-60,yp)
-    if chet >=1000 and wrap.sprite.is_collide_point(pet,pos_x,pos_y) and pet==dog:
-        wrap.sprite.remove(pet)
-        wrap.sprite.show(goldcow)
-        pet=goldcow
-        balance=21
-        chet=chet-1000
+    if chet >=buy and wrap.sprite.is_collide_point(pet,pos_x,pos_y) :
+        balance=chengebalance
+        chet=chet-buy
 
-    if chet >=3250 and wrap.sprite.is_collide_point(pet,pos_x,pos_y) and pet==goldcow:
-        wrap.sprite.remove(pet)
-        wrap.sprite.show(goldcorg)
-        pet=goldcorg
-        balance=75
-        chet=chet-3250
-
-    if chet >=12500 and wrap.sprite.is_collide_point(pet,pos_x,pos_y) and pet==goldcorg:
-        wrap.sprite.remove(pet)
-        wrap.sprite.show(goldtiger)
-        pet=goldtiger
-        balance=195
-        chet=chet-12500
+    # if chet >=3250 and wrap.sprite.is_collide_point(pet,pos_x,pos_y) and pet==goldcow:
+    #     wrap.sprite.remove(pet)
+    #     wrap.sprite.show(goldcorg)
+    #     pet=goldcorg
+    #     balance=75
+    #     chet=chet-3250
+    #
+    # if chet >=5500 and wrap.sprite.is_collide_point(pet,pos_x,pos_y) and pet==goldcorg:
+    #     wrap.sprite.remove(pet)
+    #     wrap.sprite.show(goldtiger)
+    #     pet=goldtiger
+    #     balance=195
+    #     chet=chet-5500
 
 
